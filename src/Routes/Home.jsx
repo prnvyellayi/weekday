@@ -5,35 +5,36 @@ import styles from "../css/App.module.css";
 import { getJobs } from "../utils/functions";
 
 const Home = () => {
-  const [data, setData] = useState([null]);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    let page = 0;
-    const apiCall = async () => {
-      const data = await getJobs(page);
-      setData(data.jdList);
-      page++;
-    };
-    apiCall();
-
+    let index = 0;
     document.addEventListener("scroll", async () => {
       const element = document.getElementById("main");
       const bottom =
         element.getBoundingClientRect().bottom <= window.innerHeight;
       if (bottom) {
-        const newdata = await getJobs(page);
-        const newDatalist = newdata.jdList
-        setData((data) => [...data, ...newDatalist]);
-        page++;
+        index++;
+        setPage(index);
       }
     });
   }, []);
+
+  useEffect(() => {
+    const apiCall = async () => {
+      const newdata = await getJobs(page);
+      const newDatalist = newdata.jdList;
+      setData((data) => [...data, ...newDatalist]);
+    };
+    apiCall();
+  }, [page]);
+
   return (
     <div id="main" className={styles.App}>
       <Filters />
       <div className={styles.cardsbody}>
-        {data &&
-          data.map((each) => <JobCard key={each?.jdUid} item={each} />)}
+        {data && data.map((each) => <JobCard key={each?.jdUid} item={each} />)}
       </div>
     </div>
   );
