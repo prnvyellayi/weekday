@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
+import FilterBox from "./FilterBox";
+import SearchInput from "./searchInput";
 
 const Filters = () => {
-    return <div></div>
-}
+  return (
+    <div>
+        {/* <FilterBox /> */}
+        <SearchInput />
+    </div>
+  );
+};
 
 export default Filters;

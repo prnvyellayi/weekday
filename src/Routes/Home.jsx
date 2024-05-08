@@ -32,6 +32,7 @@ const Home = () => {
 
   return (
     <div id="main" className={styles.App}>
+      Search Jobs
       <Filters />
       <div className={styles.cardsbody}>
         {data && data.map((each) => <JobCard key={each?.jdUid} item={each} />)}

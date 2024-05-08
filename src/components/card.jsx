@@ -19,13 +19,24 @@ const JobCard = ({ item }) => {
     <div className={styles.main}>
       <CompanyDetails item={item} />
       <span className={styles.salary}>
-        Estimated Salary: {item?.minJdSalary ? `${item?.minJdSalary} -` : ''} {item?.maxJdSalary} LPA
+        Estimated Salary: {item?.salaryCurrencyCode === "USD" ? "$" : "₹"}
+        {item?.minJdSalary
+          ? `${item?.minJdSalary}${item?.salaryCurrencyCode === "USD" && "K"} -`
+          : ""}{" "}
+        {item?.maxJdSalary}
+        {item?.salaryCurrencyCode === "USD" && "K"}{" "}
+        {item?.salaryCurrencyCode === "USD" ? "PA" : "LPA"}
       </span>
       <div className={styles.about}>
         <span className={styles.aboutcompany}>About Company:</span>
         <span className={styles.aboutBody}>{item?.jobDetailsFromCompany}</span>
         <span className={styles.show}>Show more</span>
       </div>
+      <div className={styles.experience}>
+        <span className={styles.exphead}>Minimum Experience</span>
+        <span className={styles.years}>{item?.minExp ?? 0} years</span>
+      </div>
+      <a className={styles.apply} href={item?.jdLink} target="_blank">⚡️ Easy Apply</a>
     </div>
   );
 };
