@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Filters from "./components/Filters";
+import JobCard from "./components/card";
+import styles from "./css/App.module.css";
+import { getJobs } from "./utils/functions";
 
-function App() {
+async function App() {
+  const data = await getJobs(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+      <Filters />
+      <div className={styles.cardsbody}>
+        {data && data.map((each) => <JobCard item={each} />)}
+      </div>
     </div>
   );
 }
