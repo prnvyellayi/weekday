@@ -1,17 +1,14 @@
-import Filters from "./components/Filters";
-import JobCard from "./components/card";
-import styles from "./css/App.module.css";
-import { getJobs } from "./utils/functions";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Routes/Home";
 
-async function App() {
-  const data = await getJobs(0);
+function App() {
   return (
-    <div className={styles.App}>
-      <Filters />
-      <div className={styles.cardsbody}>
-        {data && data.map((each) => <JobCard item={each} />)}
-      </div>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
