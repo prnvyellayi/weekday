@@ -4,17 +4,15 @@ import JobCard from "../components/card";
 import styles from "../css/App.module.css";
 import { getJobs } from "../utils/functions";
 
-function Home() {
+const Home = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     const apiCall = async () => {
       const data = await getJobs(0);
-      return data;
+      setData(data);
     };
-
-    const res = apiCall();
-    setData(res);
+    apiCall();
   }, []);
 
   return (
