@@ -65,8 +65,8 @@ const FilterBox = ({ header, options, name, multiple }) => {
           ) : (
             <>
               <div className={styles.selectedMain}>
-                {selected.map((each) => (
-                  <span className={styles.select}>
+                {selected.map((each, index) => (
+                  <span key={index} className={styles.select}>
                     {each}
                     <p
                       className={styles.cross}
@@ -106,11 +106,12 @@ const FilterBox = ({ header, options, name, multiple }) => {
             {selected.length === options.length && (
               <p className={styles.nooption}>No options</p>
             )}
-            {options.map((each) => {
+            {options.map((each, index) => {
               if (!selected.includes(each)) {
                 return (
                   <p
                     className={styles.option}
+                    key={index}
                     onClick={() => {
                       if (multiple) setSelected((data) => [...data, each]);
                       else setSelected([each])

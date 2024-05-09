@@ -3,7 +3,7 @@ import FilterBox from "./FilterBox";
 import SearchInput from "./searchInput";
 
 const Filters = () => {
-  const roleOptions = ["Backend", "Frontend", "Fullstack"];
+  const roleOptions = ["backend", "frontend", "tech lead","ios","android"];
   const EmployeeOptions = [
     "0-10",
     "10-20",
@@ -29,7 +29,7 @@ const Filters = () => {
         marginBottom: '20px'
       }}
     >
-      <FilterBox header={"Roles"} name={"roles"} options={roleOptions} multiple={true} />
+      <FilterBox header={"Roles"} name={"Roles"} options={roleOptions} multiple={true} />
       <FilterBox
         header={"Number of Employees"}
         name={"Employees"}
@@ -47,7 +47,7 @@ const Filters = () => {
         header={"Minimum Base Pay Salary"}
         name={"Salary"}
         options={salaryOptions}
-        multiple={true}
+        multiple={false}
       />
       <SearchInput />
     </div>

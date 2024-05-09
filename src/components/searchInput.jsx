@@ -46,7 +46,6 @@ const SearchInput = () => {
           padding: "5px 8px",
           border: "1px solid #ccc",
           fontSize: "13px",
-          color: "#757575",
         }}
       />
     </div>
