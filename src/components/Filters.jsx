@@ -4,9 +4,16 @@ import SearchInput from "./searchInput";
 
 const Filters = () => {
   return (
-    <div>
-        {/* <FilterBox /> */}
-        <SearchInput />
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "4px",
+        alignItems: "center",
+      }}
+    >
+      <FilterBox />
+      <SearchInput />
     </div>
   );
 };

@@ -1,0 +1,24 @@
+.box {
+  display: flex;
+  alignitems: center;
+  height: 30px;
+  borderradius: 4px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  color: #757575;
+  gap: 16px;
+}
+
+.wfull {
+  width: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.icon {
+  border-left: 1px solid #757575;
+  padding-left: 8px;
+}

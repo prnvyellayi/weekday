@@ -29,7 +29,8 @@ const SearchInput = () => {
         borderRadius: '4px',
         padding: '5px 8px',
         border: '1px solid #ccc',
-        fontSize: '14px'
+        fontSize: '13px',
+        color: '#757575'
       }}
     />
   );
