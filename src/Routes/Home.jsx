@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Filters from "../components/Filters";
 import JobCard from "../components/card";
 import styles from "../css/App.module.css";
@@ -10,6 +10,7 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const observerTarget = useRef(null);
 
   const filterFunc = (item) => {
     const exp = searchParams.get("Experience");
@@ -17,7 +18,8 @@ const Home = () => {
     const salary = searchParams.get("Salary");
     // const employees = searchParams.get("Employees");
     const roles = searchParams.get("Roles");
-    // const remote = searchParams.get("Location");
+    // const remote = searchParams.get("remote");
+    const location = searchParams.get("location");
 
     return (
       (exp ? Number(exp) >= Number(item.minExp ?? 0) : true) &&
@@ -25,7 +27,8 @@ const Home = () => {
         ? Number(salary) <= Number(item.maxJdSalary ?? item.minJdSalary)
         : true) && 
       (search ? item?.companyName.toLowerCase().includes(search.toLowerCase()) : true) && 
-      (roles ? roles.includes(item?.jobRole)  : true)
+      (roles ? roles.includes(item?.jobRole)  : true) &&
+      (location ? location.includes(item?.location)  : true)
     );
   };
 
@@ -49,23 +52,32 @@ const Home = () => {
 
   useEffect(() => {
     let index = 0;
-    document.addEventListener("scroll", async () => {
-      const element = document.getElementById("main");
-      const bottom =
-        element.getBoundingClientRect().bottom <= window.innerHeight;
-      if (bottom) {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
         index++;
         setPage(index);
+        }
+      },
+      { threshold: 1 }
+    );
+  
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+  
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
       }
-    });
-  }, []);
+    };
+  }, [observerTarget]);
 
   useEffect(() => {
     apiCall(false);
   }, [page]);
 
   useEffect(() => {
-    console.log('test')
     apiCall(true);
   }, [searchParams]);
 
@@ -98,6 +110,7 @@ const Home = () => {
           No Jobs available for this category at the moment
         </div>
       )}
+      <div id="observer" ref={observerTarget}></div>
     </div>
   );
 };

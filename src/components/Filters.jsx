@@ -16,6 +16,8 @@ const Filters = () => {
   const experienceOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const remoteOptions = ["Hybrid", "In-office", "Remote"];
   const salaryOptions = ["0", "10", "20", "30", "40", "50", "60", "70"];
+  const locationOptions = ['delhi ncr', 'mumbai','remote','chennai','bangalore']
+  const stackOptions = ['Next.js','React.js','Node.js','Nest.js','Javascript','Typescript','Golang','Python','Java','HTML','CSS'];
 
   return (
     <div
@@ -42,7 +44,9 @@ const Filters = () => {
         options={experienceOptions}
         multiple={false}
       />
-      <FilterBox header={"Remote"} name={"Location"} options={remoteOptions} multiple={true} />
+      <FilterBox header={"Remote"} name={"remote"} options={remoteOptions} multiple={true} />
+      <FilterBox header={"Location"} name={"location"} options={locationOptions} multiple={true} />
+      <FilterBox header={"Tech Stack"} name={"stack"} options={stackOptions} multiple={true} />
       <FilterBox
         header={"Minimum Base Pay Salary"}
         name={"Salary"}
