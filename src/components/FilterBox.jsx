@@ -29,6 +29,7 @@ const FilterBox = ({ header, options, name, multiple }) => {
     setSearchParams(params);
   }, [debounceSearch]);
 
+  // outside click logic to close filter options
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (!document.getElementById(name).contains(e.target)) {

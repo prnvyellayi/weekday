@@ -3,6 +3,7 @@ import FilterBox from "./FilterBox";
 import SearchInput from "./searchInput";
 
 const Filters = () => {
+    
   const roleOptions = ["backend", "frontend", "tech lead","ios","android"];
   const EmployeeOptions = [
     "0-10",

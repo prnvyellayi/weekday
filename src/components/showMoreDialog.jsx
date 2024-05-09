@@ -1,8 +1,6 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
-
 export default function DialogBox(props) {
   const { setShow, show, about } = props;
 

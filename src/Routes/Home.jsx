@@ -12,6 +12,7 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const observerTarget = useRef(null);
 
+  //function to get trusy or false for a perticular job with the given filters
   const filterFunc = (item) => {
     const exp = searchParams.get("Experience");
     const search = searchParams.get("search");
@@ -50,6 +51,7 @@ const Home = () => {
     setFilteredData(temp);
   };
 
+  // observer to call api again for infinite scroll
   useEffect(() => {
     let index = 0;
     const observer = new IntersectionObserver(
