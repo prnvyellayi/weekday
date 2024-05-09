@@ -29,22 +29,25 @@ const Filters = () => {
         marginBottom: '20px'
       }}
     >
-      <FilterBox header={"Roles"} name={"roles"} options={roleOptions} />
+      <FilterBox header={"Roles"} name={"roles"} options={roleOptions} multiple={true} />
       <FilterBox
         header={"Number of Employees"}
         name={"Employees"}
         options={EmployeeOptions}
+        multiple={true}
       />
       <FilterBox
         header={"Experience"}
         name={"Experience"}
         options={experienceOptions}
+        multiple={false}
       />
-      <FilterBox header={"Remote"} name={"Location"} options={remoteOptions} />
+      <FilterBox header={"Remote"} name={"Location"} options={remoteOptions} multiple={true} />
       <FilterBox
         header={"Minimum Base Pay Salary"}
         name={"Salary"}
         options={salaryOptions}
+        multiple={true}
       />
       <SearchInput />
     </div>

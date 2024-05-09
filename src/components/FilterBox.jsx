@@ -1,10 +1,33 @@
 import { ChevronDown } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import styles from "../css/filterBox.module.css";
+import { useSearchParams } from "react-router-dom";
+import { useDebounceValue } from "../utils/use-debouce";
 
-const FilterBox = ({ header, options, name }) => {
+const FilterBox = ({ header, options, name, multiple }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState([]);
+
+  const debounceSearch = useDebounceValue(selected, 500);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (debounceSearch.length > 0) {
+      let str= "";
+      for(let i = 0; i < debounceSearch.length; i++) {
+        if(i === debounceSearch.length - 1) {
+          str += debounceSearch[i]
+        } else {
+          str += debounceSearch[i] + ','
+        }
+      }
+      params.set(name, str);
+    } else {
+      params.delete(name);
+    }
+    setSearchParams(params);
+  }, [debounceSearch]);
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -22,8 +45,19 @@ const FilterBox = ({ header, options, name }) => {
   }, []);
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'start'}}>
-      <span className={`${styles.nameBox} ${selected.length > 0 && styles.visible}`}>{name}</span>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        alignItems: "start",
+      }}
+    >
+      <span
+        className={`${styles.nameBox} ${selected.length > 0 && styles.visible}`}
+      >
+        {name}
+      </span>
       <div className={styles.relative} id={name}>
         <span className={styles.box} onClick={() => setOpen(!open)}>
           {selected.length === 0 ? (
@@ -78,7 +112,8 @@ const FilterBox = ({ header, options, name }) => {
                   <p
                     className={styles.option}
                     onClick={() => {
-                      setSelected((data) => [...data, each]);
+                      if (multiple) setSelected((data) => [...data, each]);
+                      else setSelected([each])
                       setOpen(false);
                     }}
                   >
