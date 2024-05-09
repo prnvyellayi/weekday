@@ -1,8 +1,8 @@
 .box {
   display: flex;
-  alignitems: center;
+  align-items: center;
   height: 30px;
-  borderradius: 4px;
+  border-radius: 4px;
   padding: 5px 8px;
   border: 1px solid #ccc;
   font-size: 13px;
@@ -10,8 +10,11 @@
   gap: 16px;
 }
 
-.wfull {
+.selectedMain {
   width: 100%;
+  gap: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .relative {
@@ -21,4 +24,55 @@
 .icon {
   border-left: 1px solid #757575;
   padding-left: 8px;
+}
+
+.optionsMain {
+  position: absolute;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  borderradius: 4px;
+  margin-top: 2px;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
+.nooption {
+  padding: 5px 8px;
+  height: 10px;
+  text-align: center;
+}
+
+.option {
+    padding: 5px 8px;
+    height: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.select {
+    display: flex;
+    gap: 8px;
+    border-radius: 4px;
+    background-color: rgb(230, 230, 230);
+    color: rgb(51, 51, 51);
+    padding: 4px 6px;
+    align-items: center;
+    height: 14px;
+}
+
+.cross {
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+
+.nameBox {
+    visibility: hidden;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.visible {
+    visibility: visible;
 }
